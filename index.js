@@ -1,4 +1,4 @@
-import express from "express";
+const express from require("express");
 const mongoose = require("mongoose");
 const userDB = require("./keys");
 const app = express();
