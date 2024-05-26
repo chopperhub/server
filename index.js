@@ -15,7 +15,7 @@ mongoose
 app.get("/", async (req, res) => {
   const key = await userDB.findOne({ scriptkey: req.query.key });
   const test = await tester.findOne({ scriptkey: req.query.key });
-  if (key) {
+  if (key || test) {
     res.send("--" + key);
   } else {
     res.send("invalid key");
