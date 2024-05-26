@@ -17,6 +17,7 @@ app.get("/", async (req, res) => {
   const test = await tester.findOne({ scriptkey: req.query.key });
   if (key || test) {
     res.send("--" + key);
+    res.send("--" + test);
   } else {
     res.send("invalid key");
   }
