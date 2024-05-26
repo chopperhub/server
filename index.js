@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userDB = require("./keys");
-const tester = require("./tester")
+const tester = require("./tester");
 const app = express();
 const port = 3000;
 
