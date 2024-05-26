@@ -15,14 +15,24 @@ mongoose
 app.get("/", async (req, res) => {
   const key = await userDB.findOne({ scriptkey: req.query.key });
   const test = await tester.findOne({ scriptkey: req.query.key });
-  if (key || test) {
+  if (key) {
     res.send("--" + key);
-    res.send("--" + test);
+    
   } else {
     res.send("invalid key");
   }
   console.log(req.query.key);
 });
+
+if (test) {
+    res.send("--" + test);
+    
+  } else {
+    res.send("invalid key");
+  }
+  console.log(req.query.key);
+});
+
 
 app.listen(port, () => {
   console.log(`Sandbox listening on port ${port}`);
