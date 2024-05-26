@@ -20,4 +20,4 @@ const keySchema = new Schema({
   
 })
 
-module.exports = model('testers',keySchema);
+module.exports = model('users',keySchema);
