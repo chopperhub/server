@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userDB = require("./keys");
+const tester = require("./tester)
 const app = express();
 const port = 3000;
 
@@ -13,6 +14,7 @@ mongoose
 
 app.get("/", async (req, res) => {
   const key = await userDB.findOne({ scriptkey: req.query.key });
+  const test = await tester.findOne({ testkey: req.query.key });
   if (key) {
     res.send("--" + key);
   } else {
