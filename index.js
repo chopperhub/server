@@ -22,7 +22,6 @@ app.get("/", async (req, res) => {
     res.send("invalid key");
   }
   console.log(req.query.key);
-});
 
 if (test) {
     res.send("--" + test);
