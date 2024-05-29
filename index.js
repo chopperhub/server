@@ -51,7 +51,7 @@ app.post("/lock/:key", async (req, res) => {
         return key.ip
       } else{
        await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: req.body.ip});
-        
+        res.send("New ip set.");
       }
   } else
   {
@@ -61,7 +61,7 @@ app.post("/lock/:key", async (req, res) => {
     res.send('Restart your game!');
   }
 
-  res.send("Updated Database.");
+ 
   // Just a response.
 });
 
