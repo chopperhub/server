@@ -40,8 +40,9 @@ app.get("/", async (req, res) => {
   console.log(req.query.key);
 });
 
-app.post("/lock", async (request, response) => {
+app.post("/lock", async (req, response) => {
   // We use a mongoose method to find A record and update!
+  console.log(req.query.key)
 await userDB.findOneAndUpdate(
           { scriptkey: `${req.query.key}` },
           { $set: { ip: req.body.ip } }
