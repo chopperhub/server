@@ -25,16 +25,7 @@ app.get("/", async (req, res) => {
 
   if (key) {
     res.send(key);
-      const ip = await userDB.findOne({ ip: key.ip });
-      if (ip) {
-        return ip
-      } else
-      {
-         await userDB.findOneAndUpdate(
-          { scriptkey: `${req.query.key}` },
-          { ip: req.body.ip  }
-        );
-      }
+    
   } else {
     res.send("invalid key");
   }
