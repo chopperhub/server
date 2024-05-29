@@ -17,6 +17,10 @@ const keySchema = new Schema({
     type: String,
     required: true,
   },
+  ip: {
+  type: String,
+    
+  },
   
 })
 
