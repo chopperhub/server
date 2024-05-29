@@ -40,15 +40,26 @@ app.get("/", async (req, res) => {
   console.log(req.query.key);
 });
 
-app.post("/lock", async (req, response) => {
+app.post("/lock", async (req, res) => {
   // We use a mongoose method to find A record and update!
   console.log(req.query.key)
-await userDB.findOneAndUpdate(
-          { scriptkey: `${req.query.key}` },
-          { $set: { ip: req.body.ip } }
-    // We set the coins to the coins we received in the body of the request
-  );
-  response.send("Updated Database.");
+ const key = await userDB.findOne({ scriptkey: req.query.key });
+  if (key) {
+    const ip = await userDB.findOne({ ip: key.ip });
+    res.send("found key.");
+    if (ip) {
+      res.send('need ip reset')
+      return ip
+    } else{
+      user.ip = req.body.ip
+      await user.save()
+      res.send(user)
+    }
+
+      
+  }
+
+  res.send("Updated Database.");
   // Just a response.
 });
 
