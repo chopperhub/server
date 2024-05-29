@@ -52,8 +52,11 @@ app.post("/lock/:key", async (req, res) => {
        console.log('need ip reset')
       return key.ip
     } else{
-      key.ip = req.body.ip
-      await key.save()
+     await userDB.findOneAndUpdate(
+    { scriptkey: `${req.params.key}` },
+    { $set: { coins: req.body.ip } }
+    // We set the coins to the coins we received in the body of the request
+  );
       console.log(key)
     }
 
