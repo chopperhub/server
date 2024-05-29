@@ -44,10 +44,9 @@ app.post("/lock", async (req, res) => {
   // We use a mongoose method to find A record and update!
  const key = await userDB.findOne({ scriptkey: req.query.key });
   if (key) {
-    const ip = await userDB.findOne({ ip: key.ip });
     console.log("found key.");
-    console.log(ip)
-    if (ip !== null || 'null') {
+    console.log(key.ip)
+    if (key.ip !== null || 'null') {
        console.log('need ip reset')
       return ip
     } else{
