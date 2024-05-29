@@ -43,17 +43,22 @@ app.get("/", async (req, res) => {
 
 app.post("/lock/:key", async (req, res) => {
  const key = await userDB.findOne({ scriptkey: req.params.key });
-  if (key) {
-    if (key.ip || key.ip !== "not set") {
-       console.log('need ip reset')
-      res.send("Ask for a hwid reset.");
-      return key.ip
-    } else{
-     await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: req.body.ip});
-      
-    }
+  if (key.ip) {
+    console.log('found ip')
+      if (key.ip !== 'not set') {
+         console.log('ip not set')
+        res.send("Ask for a hwid reset.");
+        return key.ip
+      } else{
+       await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: req.body.ip});
+        
+      }
+  } else
+  {
+    console.log('no ip yet')
+     
+     await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: 'not set'});
 
-      
   }
 
   res.send("Updated Database.");
