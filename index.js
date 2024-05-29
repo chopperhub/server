@@ -41,9 +41,10 @@ app.get("/", async (req, res) => {
   console.log(req.query.key);
 });
 
-app.post("/lock", async (req, res) => {
- console.log(req.query.key);
- const key = await userDB.findOne({ scriptkey: req.query.key });
+app.post("/lock/:key", async (req, res) => {
+  console.log(req.params)
+ console.log(req.params.key);
+ const key = await userDB.findOne({ scriptkey: req.params.key });
   if (key) {
     console.log("found key.");
     console.log(key.ip)
