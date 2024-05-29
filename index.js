@@ -24,7 +24,7 @@ app.get("/", async (req, res) => {
   const key = await userDB.findOne({ scriptkey: req.query.key });
 
   if (key) {
-    res.send("--" + key);
+    res.send(key);
       const ip = await userDB.findOne({ ip: key.ip });
       if (ip) {
         return ip
