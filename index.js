@@ -44,7 +44,7 @@ app.get("/", async (req, res) => {
 app.post("/lock/:key", async (req, res) => {
  const key = await userDB.findOne({ scriptkey: req.params.key });
   if (key) {
-    if (key.ip !== "not set") {
+    if (key.ip || key.ip !== "not set") {
        console.log('need ip reset')
       res.send("Ask for a hwid reset.");
       return key.ip
