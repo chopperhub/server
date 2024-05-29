@@ -31,7 +31,7 @@ app.get("/", async (req, res) => {
       {
          await userDB.findOneAndUpdate(
           { scriptkey: `${req.query.key}` },
-          { $set: { ip: request.body.ip } }
+          { $set: { ip: req.body.ip } }
         );
       }
   } else {
