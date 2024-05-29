@@ -37,17 +37,22 @@ app.post("/lock/:key", async (req, res) => {
   if (key) {
     if (key.ip) {
     console.log('found ip')
-      if (key.ip !== 'not set') {
-         console.log('ip not set')
-        res.send("Ask for a hwid reset.");
-        return key.ip
-      } else{
-       await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: req.body.ip});
-        res.send("New ip set.");
+      if (key.ip === req.body.ip) {
+        res.send('access');
+      } else {
+          if (key.ip !== 'not set') {
+           console.log('ip not set');
+          res.send("Ask for a hwid reset.");
+          return key.ip
+        } else {
+         await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: req.body.ip});
+          res.send("New ip set.");
+        }
       }
+      
   } else
   {
-    console.log('no ip yet')
+    console.log('no ip yet');
      
      await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: 'not set'});
     res.send('Restart your game!');
