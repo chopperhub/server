@@ -34,7 +34,8 @@ app.get("/", async (req, res) => {
 
 app.post("/lock/:key", async (req, res) => {
  const key = await userDB.findOne({ scriptkey: req.params.key });
-  if (key.ip) {
+  if (key) {
+    if (key.ip) {
     console.log('found ip')
       if (key.ip !== 'not set') {
          console.log('ip not set')
@@ -50,6 +51,11 @@ app.post("/lock/:key", async (req, res) => {
      
      await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: 'not set'});
     res.send('Restart your game!');
+  }
+
+  } else {
+
+    res.send("key not found");
   }
 
  
