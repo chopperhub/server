@@ -54,7 +54,7 @@ app.post("/lock/:key", async (req, res) => {
     } else{
      await userDB.findOneAndUpdate(
     { scriptkey: `${req.params.key}` },
-    { $set: { ip: req.body.ip } }
+    { ip: req.body.ip  }
     // We set the coins to the coins we received in the body of the request
   );
       console.log(key)
