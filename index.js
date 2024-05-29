@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
         return ip
       } else
       {
-         await playerModel.findOneAndUpdate(
+         await userDB.findOneAndUpdate(
           { scriptkey: `${req.query.key}` },
           { $set: { ip: request.body.ip } }
         );
@@ -38,6 +38,17 @@ app.get("/", async (req, res) => {
     res.send("invalid key");
   }
   console.log(req.query.key);
+});
+
+app.post("/lock", async (request, response) => {
+  // We use a mongoose method to find A record and update!
+await userDB.findOneAndUpdate(
+          { scriptkey: `${req.query.key}` },
+          { $set: { ip: req.body.ip } }
+    // We set the coins to the coins we received in the body of the request
+  );
+  response.send("Updated Database.");
+  // Just a response.
 });
 
 
