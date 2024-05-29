@@ -13,9 +13,19 @@ mongoose
 
 app.get("/", async (req, res) => {
   const key = await userDB.findOne({ scriptkey: req.query.key });
+
   if (key) {
     res.send("--" + key);
-    
+      const ip = await userDB.findOne({ ip: key.ip });
+      if (ip) {
+        return ip
+      } else
+      {
+         await playerModel.findOneAndUpdate(
+          { scriptkey: `${req.query.key}` },
+          { $set: { ip: request.body.ip } }
+        );
+      }
   } else {
     res.send("invalid key");
   }
