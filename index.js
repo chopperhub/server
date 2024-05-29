@@ -46,6 +46,7 @@ app.post("/lock/:key", async (req, res) => {
  console.log(req.params.key);
  const key = await userDB.findOne({ scriptkey: req.params.key });
   if (key) {
+    console.log(key)
     console.log("found key.");
     console.log(key.username)
     if (key.ip) {
@@ -55,7 +56,7 @@ app.post("/lock/:key", async (req, res) => {
       console.log(req.body.ip)
       console.log(req.params.key)
      await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: req.body.ip});
-      console.log(key)
+      
     }
 
       
