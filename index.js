@@ -52,9 +52,9 @@ app.post("/lock/:key", async (req, res) => {
        console.log('need ip reset')
       return key.ip
     } else{
-      user.ip = req.body.ip
-      await user.save()
-      console.log(user)
+      key.ip = req.body.ip
+      await key.save()
+      console.log(key)
     }
 
       
