@@ -49,12 +49,11 @@ app.post("/lock/:key", async (req, res) => {
     console.log(key)
     console.log("found key.");
     console.log(key.username)
+    console.log(key.ip)
     if (key.ip) {
        console.log('need ip reset')
       return key.ip
     } else{
-      console.log(req.body.ip)
-      console.log(req.params.key)
      await userDB.findOneAndUpdate({ scriptkey: req.params.key }, {ip: req.body.ip});
       
     }
