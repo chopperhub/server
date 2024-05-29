@@ -46,7 +46,7 @@ app.post("/lock", async (req, res) => {
   if (key) {
     const ip = await userDB.findOne({ ip: key.ip });
     console.log("found key.");
-    if (ip) {
+    if (ip !== null || 'null') {
        console.log('need ip reset')
       return ip
     } else{
