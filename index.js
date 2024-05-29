@@ -20,6 +20,7 @@ mongoose
   .then(console.log("Connected to MongoDB!"));
 
 app.get("/", async (req, res) => {
+  
   const key = await userDB.findOne({ scriptkey: req.query.key });
 
   if (key) {
@@ -41,7 +42,7 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/lock", async (req, res) => {
-  // We use a mongoose method to find A record and update!
+ console.log(req.query.key);
  const key = await userDB.findOne({ scriptkey: req.query.key });
   if (key) {
     console.log("found key.");
