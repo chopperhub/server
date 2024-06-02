@@ -71,7 +71,7 @@ app.post("/incognito/:key", async (req, res) => {
  const key = await userDB.findOne({ scriptkey: req.params.key });
   if (key) {
 
-    res.send('loadstring(game:HttpGet("https://raw.githubusercontent.com/iamtriickxlol/lua/main/tester"))()')
+    res.send('https://raw.githubusercontent.com/iamtriickxlol/lua/main/tester')
 
   } else {
 
