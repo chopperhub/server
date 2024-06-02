@@ -67,21 +67,6 @@ app.post("/lock/:key", async (req, res) => {
   // Just a response.
 });
 
-app.post("/incognito/:key", async (req, res) => {
- const key = await userDB.findOne({ scriptkey: req.params.key });
-  if (key) {
-
-    res.send('https://raw.githubusercontent.com/iamtriickxlol/lua/main/tester')
-
-  } else {
-
-    res.send("key not found");
-  }
-
- 
-  // Just a response.
-});
-
 
 app.listen(port, () => {
   console.log(`Sandbox listening on port ${port}`);
