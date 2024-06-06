@@ -12,10 +12,17 @@ const keySchema = new Schema({
     required: true,
   
   },
-
   discordId: {
     type: String,
     required: true,
+  },
+  checkpoint1: {
+    type: String,
+    required: true
+  },
+  checkpoint2: {
+    type: String,
+    required: true
   },
   expireAt: {
     type: Date,
