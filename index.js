@@ -96,7 +96,7 @@ app.get("/kon/2/:key", async (req, res) => {
 
 app.get("/kon/:key", async (req, res) => {
   
-  const key = await freeDB.findOne({ discordId: req.params.key });
+  const key = await freeDB.findOne({ scriptkey: req.params.key });
 
   if (key) {
     res.send(`Your script key is : ${key.scriptkey}`);
