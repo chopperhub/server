@@ -68,15 +68,15 @@ app.post("/lock/:key", async (req, res) => {
   // Just a response.
 });
 
-app.get("/kon/:key", async (req, res) => {
+app.get("/kon/1/:key", async (req, res) => {
   
-  const key = await userDB.findOne({ scriptkey: req.params.key });
+  const key = await freeDB.findOne({ discordId: req.params.key });
 
   if (key) {
-    res.send(key);
+    res.send(key.checkpoint1);
     
   } else {
-    res.send("invalid key");
+    res.send("API failed to respond. Please try again.");
   }
   console.log(req.query.key);
 });
