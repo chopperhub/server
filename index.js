@@ -81,6 +81,19 @@ app.get("/kon/1/:key", async (req, res) => {
   console.log(req.query.key);
 });
 
+app.get("/kon/2/:key", async (req, res) => {
+  
+  const key = await freeDB.findOne({ discordId: req.params.key });
+
+  if (key) {
+    res.send(key.checkpoint2);
+    
+  } else {
+    res.send("API failed to respond. Please try again.");
+  }
+  console.log(req.query.key);
+});
+
 
 app.listen(port, () => {
   console.log(`Sandbox listening on port ${port}`);
