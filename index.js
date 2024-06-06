@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userDB = require("./keys");
+const freeDB = require("./freeusers");
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
@@ -65,6 +66,19 @@ app.post("/lock/:key", async (req, res) => {
 
  
   // Just a response.
+});
+
+app.get("/kon/:key", async (req, res) => {
+  
+  const key = await userDB.findOne({ scriptkey: req.params.key });
+
+  if (key) {
+    res.send(key);
+    
+  } else {
+    res.send("invalid key");
+  }
+  console.log(req.query.key);
 });
 
 
